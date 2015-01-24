@@ -73,6 +73,11 @@ struct algo_s {
 #    define FORCEINLINE __forceinline
 #  endif
 #  endif
+#elif defined(WIN32)
+#  define VOLATILE
+  /* Make sure FORCEINLINE does not include "extern" */
+#  undef FORCEINLINE
+#  define FORCEINLINE __inline__ __attribute__((always_inline))
 #else
 #  define VOLATILE
 #endif
